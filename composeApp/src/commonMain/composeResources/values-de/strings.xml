@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<resources>
+  <string name="cancel">Abbrechen</string>
+  <string name="error_local_disk_full">Die Festplatte ist voll.</string>
+  <string name="error_local_file_not_found">Datei nicht gefunden.</string>
+  <string name="error_local_serialization">Ergebnis konnte nicht analysiert werden.</string>
+  <string name="error_local_unknown">Bei einem lokalen Vorgang ist ein unbekannter Fehler aufgetreten.</string>
+  <string name="error_local_wrong_filetype">Der Dateityp wird nicht unterstützt.</string>
+  <string name="error_remote_no_internet">Internetverbindung unterbrochen.</string>
+  <string name="error_remote_request_timeout">Die Anfrage ist abgelaufen.</string>
+  <string name="error_remote_serialization">Ergebnis konnte nicht analysiert werden.</string>
+  <string name="error_remote_unknown">Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.</string>
+  <string name="error_unknown_field">Feld in der Konfiguration unbekannt.</string>
+  <string name="false">Falsch.</string>
+  <string name="label_all">Alles</string>
+  <string name="label_backgroundColor">Hintergrundfarbe</string>
+  <string name="label_baseColor">Basisfarbe</string>
+  <string name="label_bottomDotsColor">Untere Punkte Farbe</string>
+  <string name="label_drawBehind">Buchstaben umkehren</string>
+  <string name="label_fontSize">Schriftgöße</string>
+  <string name="label_graffitiFont">Schriftart</string>
+  <string name="label_hostUrl">Host URL</string>
+  <string name="label_language">Sprache</string>
+  <string name="label_midDotsColor">Mittlere Punkte Farbe</string>
+  <string name="label_outlineColor">Rahmenfarbe</string>
+  <string name="label_pattern">Muster</string>
+  <string name="label_patternColor">Musterfarbe</string>
+  <string name="label_patternHeightFactor">Muster Höhe (0.0 - 1.0)</string>
+  <string name="label_priority">Priorität</string>
+  <string name="label_text">Text</string>
+  <string name="label_topDotsColor">Obere Punkt Farbe</string>
+  <string name="label_type">Typ</string>
+  <string name="language_bn">Bangladesch</string>
+  <string name="language_de">Deutsch</string>
+  <string name="language_en">Englisch</string>
+  <string name="ok">Ok</string>
+  <string name="search">Suchen</string>
+  <string name="stderr">Fehlerausgabe</string>
+  <string name="stdout">Ausgabe</string>
+  <string name="true">True</string>
+</resources>

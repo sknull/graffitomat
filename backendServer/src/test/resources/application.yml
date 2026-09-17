@@ -1,0 +1,7 @@
+security:
+  require-ssl: false
+
+spring:
+  http:
+    converters:
+      preferred-json-mapper: kotlinx_serialization

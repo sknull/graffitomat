@@ -1,0 +1,38 @@
+Cancel
+The hard drive is full.
+File not found.
+Result could not be analyzed.
+An unknown error occurred during a local operation.
+The filetype is not supported.
+Internet connection interrupted.
+The request has timed out.
+Result could not be analyzed.
+An unknown error occurred during a remote operation.
+Field unknown in configuration.
+Invalid.
+All
+Background Color
+Base Color
+Bottom Dots Color
+Draw Behind
+Font Size
+Font
+Host URL
+Language
+Mid Dots Color
+Outline Color
+Pattern
+Pattern Color
+Pattern Height (0.0 - 1.0)
+Priority
+Text
+Top Dots Color
+Type
+Bangladesh
+German
+English
+OK
+Search
+Error Output
+Output
+True

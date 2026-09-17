@@ -1,0 +1,38 @@
+Abbrechen
+Die Festplatte ist voll.
+Datei nicht gefunden.
+Ergebnis konnte nicht analysiert werden.
+Bei einem lokalen Vorgang ist ein unbekannter Fehler aufgetreten.
+Der Dateityp wird nicht unterstützt.
+Internetverbindung unterbrochen.
+Die Anfrage ist abgelaufen.
+Ergebnis konnte nicht analysiert werden.
+Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.
+Feld in der Konfiguration unbekannt.
+Falsch.
+Alles
+Hintergrundfarbe
+Basisfarbe
+Untere Punkte Farbe
+Buchstaben umkehren
+Schriftgöße
+Schriftart
+Host URL
+Sprache
+Mittlere Punkte Farbe
+Rahmenfarbe
+Muster
+Musterfarbe
+Muster Höhe (0.0 - 1.0)
+Priorität
+Text
+Obere Punkt Farbe
+Typ
+Bangladesch
+Deutsch
+Englisch
+Ok
+Suchen
+Fehlerausgabe
+Ausgabe
+True

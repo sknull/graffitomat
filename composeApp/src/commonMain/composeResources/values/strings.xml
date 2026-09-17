@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<resources>
+  <string name="cancel">Cancel</string>
+  <string name="error_local_disk_full">The hard drive is full.</string>
+  <string name="error_local_file_not_found">File not found.</string>
+  <string name="error_local_serialization">Result could not be analyzed.</string>
+  <string name="error_local_unknown">An unknown error occurred during a local operation.</string>
+  <string name="error_local_wrong_filetype">The filetype is not supported.</string>
+  <string name="error_remote_no_internet">Internet connection interrupted.</string>
+  <string name="error_remote_request_timeout">The request has timed out.</string>
+  <string name="error_remote_serialization">Result could not be analyzed.</string>
+  <string name="error_remote_unknown">An unknown error occurred during a remote operation.</string>
+  <string name="error_unknown_field">Field unknown in configuration.</string>
+  <string name="false">Invalid.</string>
+  <string name="label_all">All</string>
+  <string name="label_backgroundColor">Background Color</string>
+  <string name="label_baseColor">Base Color</string>
+  <string name="label_bottomDotsColor">Bottom Dots Color</string>
+  <string name="label_drawBehind">Draw Behind</string>
+  <string name="label_fontSize">Font Size</string>
+  <string name="label_graffitiFont">Font</string>
+  <string name="label_hostUrl">Host URL</string>
+  <string name="label_language">Language</string>
+  <string name="label_midDotsColor">Mid Dots Color</string>
+  <string name="label_outlineColor">Outline Color</string>
+  <string name="label_pattern">Pattern</string>
+  <string name="label_patternColor">Pattern Color</string>
+  <string name="label_patternHeightFactor">Pattern Height (0.0 - 1.0)</string>
+  <string name="label_priority">Priority</string>
+  <string name="label_text">Text</string>
+  <string name="label_topDotsColor">Top Dots Color</string>
+  <string name="label_type">Type</string>
+  <string name="language_bn">Bangladesh</string>
+  <string name="language_de">German</string>
+  <string name="language_en">English</string>
+  <string name="ok">OK</string>
+  <string name="search">Search</string>
+  <string name="stderr">Error Output</string>
+  <string name="stdout">Output</string>
+  <string name="true">True</string>
+</resources>
