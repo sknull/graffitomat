@@ -29,18 +29,20 @@ My current implementation is a client server solution which offloads the renderi
 
 The client is implemented using Kotlin multiplatform and can run on the desktop as well as on android devices. Theoretically it would also be possible to run on linux and mac os but I have not the equipment to actually bvuild for these platforms. So for now I am stuck with Windows and Android - which is good enough for a proof of concept.
 
-== Current Progress
+== Features
 
-For now I have only implemented entering some text and use default parameters to generate the Graffiti. Next step is to implement the complete form and make it possible to configure certain aspects of the Griffito:
+Form to input and preview a text.
+You can configure some aspects of the final graffito:
 
 - font to use (choice of some prepared fonts which provide separate filled and outlined flavor)
 - base color
 - outline color
 - some pattern which can overlay the text body (choice of some ready mades)
 - pattern color
-- additional dots on the top, middle and bottom (also filling the text body and overlaying the pattern)
+- color of additional dots on the top, middle and bottom (also filling the text body and overlaying the pattern)
 - colors for the three different dot patterns
 - background color
+- background image
 
 == Goal
 
@@ -58,4 +60,4 @@ image::docs/screenshots/screenshot_console.png[]
 
 === Frontend
 
-image::docs/screenshots/screenshot_ui.png[]
+image::docs/screenshots/screenshot_ui_01.png[]
