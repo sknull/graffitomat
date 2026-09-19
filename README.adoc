@@ -48,8 +48,6 @@ You can configure some aspects of the final graffito:
 
 Well - currently I am without a day job and this project could be a great demo for an application ;)
 
-For this reason I do not share the code currently.
-
 So if you want a demo Wunderland - just contact me.
 
 == Screenshots
