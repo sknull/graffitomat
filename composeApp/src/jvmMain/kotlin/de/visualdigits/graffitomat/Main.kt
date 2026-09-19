@@ -25,7 +25,7 @@ fun main() {
     val homeDirectoryPath = koinApp.koin.get<String>(named("homeDirectory"))
     val writers = getPlatformLogWriters(homeDirectoryPath, "GraffitomatClient.log")
     Logger.setLogWriters(writers)
-    Logger.setTag("PSC")
+    Logger.setTag("GRF")
 
     application {
         val ioScope = rememberCoroutineScope()
@@ -42,9 +42,9 @@ fun main() {
                 ioScope.cancel("Normal Exit")
                 exitApplication()
             },
-            title = "Flyeralarm Challenge",
+            title = "graffitOmat",
             state = state,
-            resizable = false
+            resizable = true
         ) {
             App(PlatformType.jvm)
         }

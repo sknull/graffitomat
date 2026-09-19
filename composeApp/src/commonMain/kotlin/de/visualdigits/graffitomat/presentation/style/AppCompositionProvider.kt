@@ -1,6 +1,5 @@
 package de.visualdigits.graffitomat.presentation.style
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -29,6 +28,7 @@ import de.visualdigits.compose.resources.icon_alarm_24px
 import de.visualdigits.compose.resources.icon_calendar_month_24px
 import de.visualdigits.compose.resources.icon_cancel_24px
 import de.visualdigits.compose.resources.icon_check_small_24px
+import de.visualdigits.compose.resources.icon_close_24px
 import de.visualdigits.compose.resources.icon_folder_open_24px
 import de.visualdigits.compose.resources.icon_visibility_24px
 import de.visualdigits.compose.resources.ok
@@ -56,8 +56,8 @@ fun AppCompositionProvider(
         tooltipCancel = UiText.StringResourceId(Res.string.cancel),
         buttonColor = Color.Black,
         containerShape = MaterialTheme.shapes.small,
-        horizontalArrangement = Arrangement.Center,
-        verticalArrangement = Arrangement.Center,
+//        horizontalArrangement = Arrangement.Center,
+//        verticalArrangement = Arrangement.Center,
     )
     val formFieldResources = FormFieldResources(
         fieldHeight = 50.dp,
@@ -66,8 +66,12 @@ fun AppCompositionProvider(
         shape = MaterialTheme.shapes.extraSmall,
         focusedBorderColor = MaterialTheme.colorScheme.outline,
         unfocusedBorderColor = MaterialTheme.colorScheme.onSurface,
-        focusedContainerColor = Color.White,
-        unfocusedContainerColor = Color.White,
+        focusedContainerColor = Color.White.copy(alpha = 0.5f),
+        unfocusedContainerColor = Color.White.copy(alpha = 0.5f),
+        dropDownBackgroundColor = Color.White.copy(alpha = 0.5f),
+        focusedGroupBoxColor = Color.White.copy(alpha = 0.5f),
+        unfocusedGroupBoxColor = Color.White.copy(alpha = 0.5f),
+        colorPaletteNoColorIcon = Res.drawable.icon_close_24px,
         visibilityIcon = painterResource(Res.drawable.icon_visibility_24px),
     )
     val fileChooserResources = FileChooserResources(

@@ -5,7 +5,8 @@ import de.visualdigits.common.domain.model.configuration.FieldKey
 enum class RK : FieldKey<RK> {
 
     text,
-    fontSize,
+    graffitiFont,
+    characterTracking,
     pattern,
     patternColor,
     patternHeightFactor,
@@ -13,8 +14,9 @@ enum class RK : FieldKey<RK> {
     topDotsColor,
     midDotsColor,
     bottomDotsColor,
-    graffitiFont,
     baseColor,
     outlineColor,
+    outlineWidth,
     backgroundColor,
+    backgroundPattern
 }

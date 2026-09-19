@@ -1,4 +1,37 @@
 Abbrechen
+Zerstörte Kacheln
+Verwittertes Travertin
+Verwitterte weißer Granit
+Kein
+Stein mit Moos
+Verwitterter Granit
+Mittel
+Keins
+Dick
+Dünn
+Kreise
+Kreise Unten
+Kreise Mitte
+Kreise Oben
+Kreise mit horziontaler Linie
+Kreise mit vertikaler Linie
+Schnitte
+Punkte
+Punkte voll
+Feuer
+Kein Muster
+Skyline
+Wellen
+Wellen mit Linie
+Voll
+Halb
+Kein
+1/4
+3/4
+Stark
+Leicht
+Mittel
+Keins
 Die Festplatte ist voll.
 Datei nicht gefunden.
 Ergebnis konnte nicht analysiert werden.
@@ -10,10 +43,17 @@ Ergebnis konnte nicht analysiert werden.
 Bei einem Remote-Vorgang ist ein unbekannter Fehler aufgetreten.
 Feld in der Konfiguration unbekannt.
 Falsch.
+Hintergrund
+Farben
+Schrift
+Muster
+Text
 Alles
 Hintergrundfarbe
+Hintergrundbild
 Basisfarbe
 Untere Punkte Farbe
+Unterschneidung
 Buchstaben umkehren
 Schriftgöße
 Schriftart
@@ -21,6 +61,7 @@ Host URL
 Sprache
 Mittlere Punkte Farbe
 Rahmenfarbe
+Rahmendicke
 Muster
 Musterfarbe
 Muster Höhe (0.0 - 1.0)

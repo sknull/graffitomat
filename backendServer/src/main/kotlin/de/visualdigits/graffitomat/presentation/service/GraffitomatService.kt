@@ -1,12 +1,13 @@
 package de.visualdigits.graffitomat.presentation.service
 
+import de.visualdigits.graffitomat.domain.model.core.BackgroundPattern
 import de.visualdigits.graffitomat.domain.model.core.GraffitiFont
 import de.visualdigits.graffitomat.domain.model.core.GraffitiPattern
 import de.visualdigits.graffitomat.domain.model.dto.CreateGraffitoRequestDto
 import de.visualdigits.graffitomat.domain.util.createGraffitiImage
+import de.visualdigits.graffitomat.domain.util.createPatternImage
 import de.visualdigits.graffitomat.presentation.model.FrameBufferComponent
 import de.visualdigits.kotlin.extensions.toPixelMatrix
-import jakarta.servlet.http.HttpServletResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,13 +20,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
-import org.springframework.web.bind.annotation.RequestParam
 import org.tw.pi.framebuffer.inmemory.BufferedImageFrameBuffer
 import java.awt.Color
+import java.awt.Graphics2D
+import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
+import java.io.File
 import javax.imageio.ImageIO
 import kotlin.math.min
 import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.milliseconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
 @Service
@@ -64,8 +68,8 @@ class GraffitomatService(
 
     fun renderGraffito(
         text: String,
-        fontSize: Int = 150,
-        pattern: GraffitiPattern? = GraffitiPattern.SKYLINE,
+        characterTracking: Float = -0.3f,
+        pattern: GraffitiPattern? = null,
         patternColor: Color? = null,
         patternHeightFactor: Float = 1.0f,
         drawBehind: Boolean = false,
@@ -75,26 +79,50 @@ class GraffitomatService(
         graffitiFont: GraffitiFont = GraffitiFont.JRAOT,
         baseColor: Color? = null,
         outlineColor: Color? = null,
+        outlineWidth: Float = 3.0f,
         backgroundColor: Color? = null,
+        backgroundPattern: BackgroundPattern? = null,
     ): ByteArray {
+        log.info("preview $text")
          val graffito = createGraffitiImage(
-            text = text,
-            fontSize = fontSize,
-            pattern = pattern,
-            patternColor = patternColor,
-            patternHeightFactor = patternHeightFactor,
-            drawBehind = drawBehind,
-            topDotsColor = topDotsColor,
-            midDotsColor = midDotsColor,
-            bottomDotsColor = bottomDotsColor,
-            graffitiFont = graffitiFont,
-            baseColor = baseColor,
-            outlineColor = outlineColor,
-            backgroundColor = backgroundColor
+             text = text,
+             graffitiFont = graffitiFont,
+             characterTracking = characterTracking,
+             pattern = pattern,
+             baseColor = baseColor,
+             patternColor = patternColor,
+             patternHeightFactor = patternHeightFactor,
+             drawBehind = drawBehind,
+             topDotsColor = topDotsColor,
+             midDotsColor = midDotsColor,
+             bottomDotsColor = bottomDotsColor,
+             outlineColor = outlineColor,
+             outlineWidth = outlineWidth
         )
+        val graffitoWidth = graffito.width
+        val graffitoHeight = graffito.height
+
+        val frameBufferWidth = graffitoWidth + 60
+        val frameBufferHeight = 240
+        val frameBuffer = BufferedImage(frameBufferWidth, frameBufferHeight, BufferedImage.TYPE_INT_ARGB)
+        val g2d = frameBuffer.graphics as Graphics2D
+        renderBackground(
+            frameBufferWidth = frameBufferWidth,
+            frameBufferHeight = frameBufferHeight,
+            backgroundPattern = backgroundPattern,
+            backgroundColor = backgroundColor,
+            g2d = g2d
+        )
+        val yOffset = ((240 - graffitoHeight) / 2.0).roundToInt()
+        g2d.drawImage(graffito, 30, yOffset, null)
+
+        g2d.dispose()
+
+        ImageIO.write(frameBuffer, "jpg", File("e:/temp/graffito.jpg"))
+
         ByteArrayOutputStream().use { baos ->
             // "png" ist meistens sicherer bei ImageIO und erhält Transparenzen
-            ImageIO.write(graffito, "png", baos)
+            ImageIO.write(frameBuffer, "png", baos)
             return baos.toByteArray()
         }
     }
@@ -102,54 +130,73 @@ class GraffitomatService(
     private suspend fun renderLoop(
         request: CreateGraffitoRequestDto
     ) {
-        val frameBuffer = frameBufferComponent.getFrameBuffer()
-        val g2d = frameBuffer.graphics
+        log.info("Producing: $request")
 
-        g2d.color = Color.BLACK
-        g2d.fillRect(0, 0, frameBuffer.width, frameBuffer.height)
+        val frameBuffer = frameBufferComponent.getFrameBuffer()
+        val frameBufferWidth = frameBuffer.width
+        val frameBufferHeight = frameBuffer.height
+        val g2d = frameBuffer.graphics
 
         val graffito = createGraffitiImage(
             text = request.text,
-            fontSize = request.fontSize,
+            graffitiFont = request.graffitiFont,
+            characterTracking = request.characterTracking,
             pattern = request.pattern,
+            baseColor = request.baseColor,
             patternColor = request.patternColor,
             patternHeightFactor = request.patternHeightFactor,
             drawBehind = request.drawBehind,
             topDotsColor = request.topDotsColor,
             midDotsColor = request.midDotsColor,
             bottomDotsColor = request.bottomDotsColor,
-            graffitiFont = request.graffitiFont,
-            baseColor = request.baseColor,
             outlineColor = request.outlineColor,
-            backgroundColor = request.backgroundColor
+            outlineWidth = request.outlineWidth
         )
 
         val graffitoWidth = graffito.width
         val graffitoHeight = graffito.height
-        val frameBufferWidth = frameBuffer.width
-        val frameBufferHeight = frameBuffer.height
         val offsetY = ((frameBufferHeight - graffitoHeight) / 2.0).roundToInt()
 
         if (frameBuffer is BufferedImageFrameBuffer) {
-            g2d.fillRect(0, 0, frameBuffer.width, frameBuffer.height)
-            val frame = graffito.getSubimage(0, 0, min(frameBufferWidth, graffitoWidth), graffitoHeight)
-            g2d.drawImage(frame, 0, offsetY, null)
-            println(frameBuffer.image.toPixelMatrix(targetHeight = 40))
+            println(graffito.toPixelMatrix(targetHeight = 40))
         } else {
             for (x in 0 until graffitoWidth step 2) {
                 currentCoroutineContext().ensureActive()
 
-                g2d.fillRect(0, 0, frameBuffer.width, frameBuffer.height)
+                renderBackground(
+                    frameBufferWidth = frameBufferWidth,
+                    frameBufferHeight = frameBufferHeight,
+                    backgroundPattern = request.backgroundPattern,
+                    backgroundColor = request.backgroundColor,
+                    g2d = g2d
+                )
                 val rest = graffitoWidth - x
                 val frame = graffito.getSubimage(x, 0, min(frameBufferWidth, rest), graffitoHeight)
                 g2d.drawImage(frame, 0, offsetY, null)
 
                 frameBuffer.update()
 
-                delay(1000L / 30L)
+                delay((1000 / 30.0).milliseconds)
             }
         }
 
         g2d.dispose()
+    }
+
+    private fun renderBackground(
+        frameBufferWidth: Int,
+        frameBufferHeight: Int,
+        backgroundPattern: BackgroundPattern?,
+        backgroundColor: Color?,
+        g2d: Graphics2D
+    ) {
+        if (backgroundPattern != null) {
+            val img = backgroundPattern.load(frameBufferHeight, backgroundColor)
+            val backgroundImage = createPatternImage(img, frameBufferWidth, frameBufferHeight)
+            g2d.drawImage(backgroundImage, 0, 0, null)
+        } else if (backgroundColor != null) {
+            g2d.color = backgroundColor
+            g2d.fillRect(0, 0, frameBufferWidth, frameBufferHeight)
+        }
     }
 }

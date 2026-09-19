@@ -3,6 +3,7 @@ package de.visualdigits.graffitomat.di
 import de.visualdigits.graffitomat.data.datasource.BackendDataSource
 import de.visualdigits.graffitomat.data.datasource.BackendKtorDataSource
 import de.visualdigits.graffitomat.data.http.HttpClientFactory
+import de.visualdigits.graffitomat.data.provider.HostUrlProvider
 import de.visualdigits.graffitomat.data.repository.DefaultBackendRepository
 import de.visualdigits.graffitomat.domain.repository.BackendRepository
 import de.visualdigits.graffitomat.presentation.model.GraffitomatViewModel
@@ -16,9 +17,13 @@ expect val platformModule: Module
 
 expect val homeDirectory: String
 
+expect val isDevMode: Boolean
+
 val sharedModule = module {
 
     single(named("homeDirectory")) { homeDirectory }
+    single(named("isDevMode")) { isDevMode }
+    single { HostUrlProvider(isDevMode = get(named("isDevMode"))) }
 
     singleOf(::GraffitomatViewModel)
     singleOf(::DefaultBackendRepository).bind<BackendRepository>()

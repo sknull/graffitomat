@@ -12,7 +12,7 @@ enum class GraffitiPattern(
     val resource: String
 ) {
     
-    CIRCLES("patterns/pattern-circle.svg"),
+    CIRCLES("patterns/pattern-circles.svg"),
     CIRCLES_WITH_HORIZONTAL_LINES("patterns/pattern-circles-with-horizontal-lines.svg"),
     CIRCLES_WITH_VERTICAL_LINES("patterns/pattern-circles-with-vertical-lines.svg"),
     CIRCLES_TOP("patterns/pattern-circles-top.svg"),
@@ -31,7 +31,7 @@ enum class GraffitiPattern(
         height: Int,
         color: Color
     ): BufferedImage {
-        return loadSvg(resource, height, color)
+        return loadImage(resource, height, color)
     }
 }
 
@@ -40,7 +40,7 @@ enum class GraffitiPattern(
  * The image width will be calculated from svg aspect and the given [height].
  * You can also specify an optional [tint] color to override the original svg color.
  */
-private fun loadSvg(
+private fun loadImage(
     resource: String,
     height: Int,
     tint: Color? = null

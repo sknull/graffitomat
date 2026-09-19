@@ -245,6 +245,13 @@ tasks.withType<Zip> {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
+// forwarding all system properties except for the headless mode to the application
+tasks.withType<JavaExec> {
+    doFirst {
+        systemProperties(System.getProperties().mapKeys { it.key.toString() }.filter { it.key != "java.awt.headless"})
+    }
+}
+
 compose.desktop {
     application {
         mainClass = "de.visualdigits.graffitomat.MainKt"

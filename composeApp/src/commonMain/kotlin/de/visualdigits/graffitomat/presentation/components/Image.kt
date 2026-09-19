@@ -20,6 +20,8 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import coil3.compose.LocalPlatformContext
+import coil3.network.NetworkHeaders
+import coil3.network.httpHeaders
 import coil3.request.CachePolicy
 import coil3.request.ImageRequest
 import coil3.request.crossfade
@@ -28,6 +30,8 @@ import de.visualdigits.common.presentation.components.util.conditional
 import de.visualdigits.compose.resources.Res
 import de.visualdigits.compose.resources.icon_hourglass_top_24px
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 @Composable
 fun Image(
@@ -40,18 +44,31 @@ fun Image(
     maxImageSize: Int?,
     showLoadingIcon: Boolean = true
 ) {
-
+    val isDevMode = koinInject<Boolean>(named("isDevMode"))
     val context = LocalPlatformContext.current
 
     val request = remember(url, maxImageSize) {
+        val headers = NetworkHeaders.Builder()
+            .set("Cache-Control", "no-cache, no-store, must-revalidate")
+            .set("Pragma", "no-cache")
+            .set("Expires", "0")
+            .build()
         ImageRequest.Builder(context)
+            .apply {
+                if (isDevMode) {
+                    diskCachePolicy(CachePolicy.DISABLED)
+                    httpHeaders(headers)
+                }
+
+                if (maxImageSize != null) {
+                    size(maxImageSize)
+                } else {
+                    size(Size.ORIGINAL)
+                }
+            }
             .data(url)
             .crossfade(true)
-            .diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED)
-            .apply {
-                if (maxImageSize != null) size(maxImageSize) else size(Size.ORIGINAL)
-            }
             .build()
     }
 

@@ -1,6 +1,7 @@
 package de.visualdigits.graffitomat.presentation.model
 
 import de.visualdigits.common.domain.model.ui.KeyValue
+import de.visualdigits.graffitomat.domain.model.type.Language
 
 sealed interface GraffitomatAction {
 
@@ -11,4 +12,8 @@ sealed interface GraffitomatAction {
     class OnCreateRequestCancelClick : GraffitomatAction
 
     class OnCreateRequestOkClick : GraffitomatAction
+
+    data class OnLanguageClicked(
+        val language: Language
+    ) : GraffitomatAction
 }

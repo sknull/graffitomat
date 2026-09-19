@@ -11,10 +11,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import de.visualdigits.common.domain.model.platform.PlatformType
+import de.visualdigits.graffitomat.data.provider.HostUrlProvider
 import de.visualdigits.graffitomat.presentation.model.GraffitomatViewModel
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
-import kotlin.getValue
+import org.koin.compose.koinInject
+import org.koin.core.qualifier.named
 
 class MainActivity : AppCompatActivity() {
 

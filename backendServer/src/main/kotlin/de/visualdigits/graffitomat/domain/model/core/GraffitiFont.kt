@@ -4,33 +4,23 @@ import java.awt.Font
 import java.awt.GraphicsEnvironment
 
 enum class GraffitiFont(
-    val baseFontResource: String,
-    val outlineFontResource: String? = null,
-    val baseFontOffsetX: Int = 0,
-    val baseFontOffsetY: Int = 0,
-    val characterTracking: Float = 0.0f,
+    val resource: String,
+    val fontSize: Int,
 ) {
-    JRAOT(
-        baseFontResource = "fonts/Jraot-Regular.ttf",
-        outlineFontResource = "fonts/Jraot-Outline.ttf",
-        baseFontOffsetX = 5,
-        baseFontOffsetY = 4,
-        characterTracking = -0.3f
-    ),
-
-    SPARTICAL(
-        baseFontResource = "fonts/SparticalGraffiti.otf",
-        outlineFontResource = "fonts/SparticalGraffitiLine.otf",
-        baseFontOffsetX = 1,
-        baseFontOffsetY = 1
-    )
+    AANOTHERTAG("fonts/aAnotherTag.ttf", 250),
+    ADRIP1("fonts/adrip1.ttf", 180),
+    AEROSOLDIERDRIP("fonts/AerosoldierDrip.otf", 160),
+    FATWANDALS("fonts/FatWandals.ttf", 160),
+    FATWANDALSELEMENT("fonts/FatWandalsElement.ttf", 160),
+    HESORDER("fonts/Hesorder.ttf", 160),
+    JRAOT("fonts/Jraot-Regular.ttf", 140),
+    JUNKYSTYLEDRIP("fonts/JunkyStyle-Drip.ttf", 160),
+    SPARTICAL("fonts/SparticalGraffiti.otf", 160),
+    SPLATINK("fonts/Splatink.otf", 160),
     ;
 
-    fun load(fontSize: Int): Pair<Font, Font?> {
-        return Pair(
-            loadFont(baseFontResource, fontSize),
-            outlineFontResource?.let { off -> loadFont(off, fontSize)}
-        )
+    fun load(): Font {
+        return loadFont(resource, fontSize)
     }
 }
 

@@ -1,4 +1,37 @@
 Cancel
+Destroyed Tiles
+Distressed Travertin
+Distressed Whiute Granite
+None
+Stone With Moss
+Weathered Granite
+Medium
+None
+Thick
+Thin
+Circles
+Circles Bottom
+Circles Mid
+Circles Top
+Circles With Horizontal Lines
+Circles With Vertical Lines
+Cuts
+Dots
+Dots Full
+Fire
+No Pattern
+Skyline
+Waves
+Waves With Line
+Full
+Half
+None
+1/4
+3/4
+Heavy
+Light
+Medium
+None
 The hard drive is full.
 File not found.
 Result could not be analyzed.
@@ -10,10 +43,17 @@ Result could not be analyzed.
 An unknown error occurred during a remote operation.
 Field unknown in configuration.
 Invalid.
+Background
+Colors
+Font
+Pattern
+Text
 All
 Background Color
+Background Image
 Base Color
 Bottom Dots Color
+Character Tracking
 Draw Behind
 Font Size
 Font
@@ -21,6 +61,7 @@ Host URL
 Language
 Mid Dots Color
 Outline Color
+Outline Width
 Pattern
 Pattern Color
 Pattern Height (0.0 - 1.0)

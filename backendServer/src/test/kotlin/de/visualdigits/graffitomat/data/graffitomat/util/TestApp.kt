@@ -21,18 +21,13 @@ class TestApp(
 
         val graffito = createGraffitiImage(
             text = "GRAFFITOMAT",
-            fontSize = 200,
+            graffitiFont = GraffitiFont.JRAOT,
             pattern = GraffitiPattern.SKYLINE,
+            baseColor = Color.RED,
             patternColor = Color.YELLOW,
             patternHeightFactor = 0.7f,
-            drawBehind = false,
             topDotsColor = Color.GREEN,
-            midDotsColor = null,
-            bottomDotsColor = null,
-            graffitiFont = GraffitiFont.JRAOT,
-            baseColor = Color.RED,
             outlineColor = Color.BLUE,
-            backgroundColor = Color.BLACK
         )
         val graffitoWidth = graffito.width
         val graffitoHeight = graffito.height
